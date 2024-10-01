@@ -1,0 +1,71 @@
+\usepackage[automark]{scrlayer-scrpage}
+\automark[section]{chapter}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\leftmark}
+\cofoot{\pagemark}
+\renewcommand*{\chapterpagestyle}{scrheadings}
+\renewcommand*{\indexpagestyle}{scrheadings}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+
+\RedeclareSectionCommand[
+  beforeskip=-1\baselineskip,
+  afterskip=0.4\baselineskip
+]{chapter}
+
+% Kapitelpräfixgröße
+\setkomafont{chapterprefix}{\large}
+% Kapitelgröße
+\setkomafont{chapter}{\LARGE}
+% Paragraphen/Absatzabstand
+%\setlength{\parskip}{0.7em}
+\setlength{\parskip}{0.5em plus 0.1em minus 0.2em}
+\setlength{\parindent}{0pt}
+
+% Fußnoten eingerückt untereinander
+\deffootnote[]{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
+
+\newcommand{\sffett}[1]{\textsf{\textbf{#1}}}
+\newcommand{\mathsfbold}[1]{\boldsymbol{\mathsf{#1}}}
+
+% 1,5-zeiligen Zeilenabstand
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{float}
+
+\usepackage{chngcntr}
+
+\usepackage[section]{placeins}
+
+% Anhang
+\renewcommand\appendix{\par
+  % Inhaltsverzeichnis ohne Anhangbilder, aber im Anhang nummeriert
+  \captionsetup{list=false}
+  \counterwithin*{figure}{section}
+  \counterwithin*{table}{section}
+  \counterwithin*{algorithm}{section}
+  \counterwithin*{lstlisting}{section}
+  \renewcommand\thesection{\Alph{section}}
+  \renewcommand\thefigure{Abb.~\Alph{section}.\arabic{figure}}
+  \renewcommand\thetable{Tab.~\Alph{section}.\arabic{table}}
+  \renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
+  \renewcommand{\thealgorithm}{\thesection.\arabic{algorithm}}
+}
+
+\usepackage{epigraph}
+\usepackage{ebgaramond}
+\renewcommand\textflush{flushright}
+
+\usepackage{etoolbox}
+\makeatletter
+\newlength\epitextskip
+\pretocmd{\@epitext}{\em}{}{}
+\apptocmd{\@epitext}{\em}{}{}
+\patchcmd{\epigraph}{\@epitext{#1}\\}{\@epitext{#1}\\[\epitextskip]}{}{}
+\makeatother
+
+\setlength\epigraphrule{0.5pt}
+\setlength\epitextskip{2ex}
+\setlength\epigraphwidth{.75\textwidth}
+\thispagestyle{empty}
