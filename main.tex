@@ -1,0 +1,105 @@
+% !TeX spellcheck = de_DE
+\documentclass[
+  % Schriftgröße
+  11pt,
+  % Ein- oder Zweiseitiges Dokument (oneside, twoside)
+  oneside,
+  a4paper,
+  % Kein Punkt am Ende der Nummerierung
+  numbers=noenddot,
+  % Literaturverzeichnis ins ToC
+  bibliography=totoc,
+  % Abbildungs- und Tabellenverzeichnis ins ToC
+  listof=totoc,
+  % Absatz nicht einrücken
+  %parskip,
+  % Kein vertikaler Abstand in Verzeichnissen zwischen unterschiedlichen Kapitel
+  %listof=nochaptergap
+]{scrreprt}
+
+\input{00-praeambel/01-allgemein}
+\input{00-praeambel/02-zitate}
+\input{00-praeambel/03-zeichen-symbole}
+\input{00-praeambel/04-layout}
+\input{00-praeambel/05-farben}
+\input{00-praeambel/06-verzeichnisse}
+\input{00-praeambel/07-tabellen}
+\input{00-praeambel/08-algorithmen}
+\input{00-praeambel/09-quellcode}
+\input{00-praeambel/10-listen}
+
+%%| SET PACKAGE PARAMETERS HERE |%%
+\hypersetup{                                                                       
+    colorlinks,
+    citecolor   = black,
+    filecolor   = black,
+    linkcolor   = black,
+    urlcolor    = black,
+    pdftitle    = {Titel},
+    pdfauthor   = {Author},
+    pdfkeywords = {Latex, Thesis, Bachelor, Master},
+    pdfcreator  = {pdflatex},           
+    pdfproducer = {LaTeX with hyperref}
+    bookmarksnumbered
+}
+
+\setstretch{1.25}
+
+\addbibresource{Document/Bibliography/ref.bib}
+
+\begin{document}
+\newgeometry{left=30mm,right=25mm,top=30mm,bottom=20mm}
+\include{01-vorspann/01-deckblatt}
+\restoregeometry
+\pagenumbering{gobble}
+
+% \pagenumbering{Roman}
+% \setcounter{page}{1}
+
+% Example for inclution of a  pictures or document
+%\includepdf[pages={1}]{Document/02-eiderklaerung.pdf}
+
+\include{01-vorspann/03-lesehinweis}
+ \include{01-vorspann/04-danksagung}
+ \include{01-vorspann/05-kurzfassung}
+
+\newpage
+\cleardoublepage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{02-inhalt/01-einleitung}
+\input{02-inhalt/02-00-grundlagen}
+\input{02-inhalt/02-01-kapitel1}
+\input{02-inhalt/02-02-kapitel2}
+\input{02-inhalt/02-03-kapitel3}
+%\input{02-inhalt/02-01-abkuerzungen}
+%\input{02-inhalt/02-02-formeln}
+%\input{02-inhalt/02-03-tabellen}
+%\input{02-inhalt/02-04-bilder}
+%\input{02-inhalt/02-05-schriften}
+%\input{02-inhalt/02-06-algorithmen}
+%\input{02-inhalt/02-07-literatur}
+\input{02-inhalt/03-schlussbetrachtung}
+
+% Anhang
+\appendix
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\printbibliography[heading= bibintoc, title={Literaturverzeichnis}]
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\newpage
+\listoftables
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\newpage
+\renewcommand\listoflistingscaption{Quellcodeverzeichnis}
+\listoflistings
+\addcontentsline{toc}{section}{Quellcodeverzeichnis}
+
+\end{document}
